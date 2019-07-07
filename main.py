@@ -4,23 +4,21 @@ autoAnki library to help make language flashcards in Anki
 Author: Matt Estrada
 """
 
-from importVocabList import import_list
-from ripWordRef import ripWordRef
-import codecs
-from ripImage import ripImage
-from redundancy import files, redundantWord
+
 import os
 import datetime
 import csv
 
-
-
+from importVocabList import import_list
+from ripWordRef import ripWordRef
+from ripImage import ripImage
+from redundancy import files
 
 ######################################
 # Import and save-to files
 
 # import list from .txt file
-# file_in = 'data/FrenchVerbsNotes.txt'
+# file_in = '/data/FrenchVerbsNotes.txt'
 file_in = 'data/test_input.txt'
 # file_in = 'data/debugCases.txt'
 file_out = 'data/test_output.txt'
@@ -29,9 +27,10 @@ file_out = 'data/test_output.txt'
 # Language settings
 
 lang = 'fr'
-ankiPrefix d= 'autoAnki_'+lang+' '  # tag all media files in case I have to delete them later
+ankiPrefix = 'autoAnki_'+lang+' '  # tag all media files in case I have to delete them later
 mediaDir = 'downloads/images/'
 audDir = 'downloads/audio/'
+
 # TODO: allow program to pick up after an error, perhaps scan through directory?
 # TODO: count number of things here
 # TODO: add capability for priority/usage frequency
@@ -70,8 +69,6 @@ with open(file_out, 'a', newline='') as tsvfile:  # a stands for append
         imgName = ankiPrefix + imgPathSplit[1] # trying this out
         os.rename(imgAbsPath, imgAbsPath2)
         thisNote.img = imgName
-
-
 
         # else:
         #     print(thisFr + " already has an image")

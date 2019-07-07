@@ -1,5 +1,11 @@
 # ignore all logs
-*.idea
-*.vscode
-*venv/
-*.__pycache__
+.idea/*
+.vscode/*
+venv/*
+__pycache__/
+#some of these may not be here, I was messing around w file structure 
+source/ 		
+old/ 
+downloads/
+# Still playing w doxygen
+doxygen/ 

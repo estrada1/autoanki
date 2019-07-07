@@ -1,3 +1,9 @@
+"""@package docstring
+
+Some methods to handle words already saved and stored
+"""
+
+
 import os
 
 

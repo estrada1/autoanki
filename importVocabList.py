@@ -1,3 +1,7 @@
+"""@package docstring
+
+Methods to import vocab list from .txt file.
+"""
 import csv
 from collections import deque
 
@@ -19,6 +23,7 @@ def import_list(file_in):
 
 # Matt note as he figures out how to interface with Anki
 class mNote:
+    """Store info (e.g. audio path, english translation) for an Anki Note."""
     def __init__(self,french,english,audiopath,imagepath):
         self.fr = french
         self.eng = english
@@ -26,6 +31,7 @@ class mNote:
         self.img = imagepath
 
     def logError(self, txtfile, errormsg):
+        """Log error in attempted command in txtfile."""
 
         with open(txtfile, 'a', newline='') as tsvfile:  # a stands for append
 

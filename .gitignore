@@ -1,4 +1,5 @@
 # ignore all logs
 *.idea
 *.vscode
-venv/
+*venv/
+*.__pycache__

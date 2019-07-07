@@ -1,0 +1,7 @@
+acheter	to buy	[sound:acheter.mp3]	Commonly-Used
+contrôler	to check, inspect, test, supervise, control	[sound:contr%C3%B4ler.mp3]	Commonly-Used
+corriger	to correct	[sound:corriger.mp3]	Commonly-Used
+coucher	to put to bed, lay, flatten	[sound:coucher.mp3]	Commonly-Used
+couper	to cut, switch off	[sound:couper.mp3]	Commonly-Used
+courir	to run, race	[sound:courir.mp3]	Commonly-Used
+coûter	to cost	[sound:co%C3%BBter.mp3]	Commonly-Used

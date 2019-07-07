@@ -1,0 +1,11 @@
+acheter	to buy	[sound:acheter.mp3]	/Users/Matteo/Documents/Coding/autoAnki/downloads/images/autoAnki_fr acheter Acheter-avec-sans-courtier_1536x1146.jpg
+advenir	to happen	[sound:advenir.mp3]	/Users/Matteo/Documents/Coding/autoAnki/downloads/images/autoAnki_fr advenir logo-advenir-def-HD.jpg
+aider	to help, assist	[sound:aider.mp3]	/Users/Matteo/Documents/Coding/autoAnki/downloads/images/autoAnki_fr aider bnvolat_bon_pour_moral-854x570.jpg
+aimer	to like, to love	[sound:aimer.mp3]	/Users/Matteo/Documents/Coding/autoAnki/downloads/images/autoAnki_fr aimer Interview-with-Aimer.jpg
+ajouter	to add	[sound:ajouter.mp3]	/Users/Matteo/Documents/Coding/autoAnki/downloads/images/autoAnki_fr ajouter ajouter-un-ingredient-5024e64a.jpg
+appeler	to call, name, appeal	[sound:appeler.mp3]	/Users/Matteo/Documents/Coding/autoAnki/downloads/images/autoAnki_fr appeler maxresdefault.jpg
+apporter	to bring, bear	[sound:apporter.mp3]	/Users/Matteo/Documents/Coding/autoAnki/downloads/images/autoAnki_fr apporter maxresdefault.jpg
+apprendre	to learn	[sound:apprendre.mp3]	/Users/Matteo/Documents/Coding/autoAnki/downloads/images/autoAnki_fr apprendre 2015-11-int-mode-apprentissage.jpg
+arrêter	to stop, arrest	[sound:arr%C3%AAter.mp3]	/Users/Matteo/Documents/Coding/autoAnki/downloads/images/autoAnki_fr arrêter 18661819-arr%C3%AAter-signe-de-la-main.jpg
+attendre	to wait, wait for, expect	[sound:attendre.mp3]	/Users/Matteo/Documents/Coding/autoAnki/downloads/images/autoAnki_fr attendre maxresdefault.jpg
+connaître	to know, be acquainted	[sound:conna%C3%AEtre.mp3]	/Users/Matteo/Documents/Coding/autoAnki/downloads/images/autoAnki_fr connaître maxresdefault.jpg

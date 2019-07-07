@@ -1,0 +1,4 @@
+étonner	to amaze, astonish, stun, surprise	[sound:%C3%A9tonner.mp3]	Standard-Verbs
+étourdir	to stun, daze, make dizzy, deafen, bewilder	[sound:%C3%A9tourdir.mp3]	Standard-Verbs
+étreindre	to embrace, grip	[sound:%C3%A9treindre.mp3]	Standard-Verbs
+évaluer	to evaluate, appraise, assess, estimate	[sound:%C3%A9valuer.mp3]	Standard-Verbs

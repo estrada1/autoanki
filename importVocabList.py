@@ -5,8 +5,9 @@ Methods to import vocab list from .txt file.
 import csv
 from collections import deque
 
+
 def import_list(file_in):
-    # use csv library to read in tsv file and return a deck of "mNotes", or Matt Notes
+    """use csv library to read in tsv file and return a deck of "mNotes", or Matt Notes"""
 
     verbFields = ['fr', 'eng', 'aud', 'misc']
     dNotes = deque()
@@ -21,7 +22,7 @@ def import_list(file_in):
 
     return dNotes
 
-# Matt note as he figures out how to interface with Anki
+
 class mNote:
     """Store info (e.g. audio path, english translation) for an Anki Note."""
     def __init__(self,french,english,audiopath,imagepath):

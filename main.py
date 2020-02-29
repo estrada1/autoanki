@@ -9,6 +9,10 @@ import os
 import datetime
 import csv
 
+import sys
+print(sys.path)
+from colorama import Fore, Back, Style # color printouts 
+
 from importVocabList import import_list
 from ripWordRef import ripWordRef
 from ripImage import ripImage
@@ -39,6 +43,8 @@ audDir = 'downloads/audio/'
 
 ######################################
 
+print(Fore.GREEN + '\nautoAnki\n' + Style.RESET_ALL) 
+
 thisDict = import_list(file_in)  # returns deque of "mNotes" class
 
 # find images and fill in url
@@ -52,6 +58,7 @@ with open(file_out, 'a', newline='') as tsvfile:  # a stands for append
     for thisNote in thisDict:
 
         thisFr = thisNote.fr
+        print('Word\t'+ Fore.CYAN + thisFr + Style.RESET_ALL)
 
         # if not redundantWord(thisFr, imgFiles):
 

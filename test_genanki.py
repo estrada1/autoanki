@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+""" Test 1 to correctly import genanki, write a deck, and read it in Anki
+
+"""
+
 import genanki
 
 my_model = genanki.Model(
@@ -22,3 +26,10 @@ my_note = genanki.Note(
 
 
 print("Hello world ")
+
+my_deck = genanki.Deck(
+  2059400110,
+  'Country Capitals')
+
+my_deck.add_note(my_note)
+genanki.Package(my_deck).write_to_file('output.apkg')

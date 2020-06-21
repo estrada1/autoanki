@@ -1,9 +1,0 @@
-acheter	to buy	[sound:acheter.mp3]	Commonly-Used
-advenir	to happen	[sound:advenir.mp3]	Commonly-Used
-aider	to help, assist	[sound:aider.mp3]	Commonly-Used
-aimer	to like, to love	[sound:aimer.mp3]	Commonly-Used
-ajouter	to add	[sound:ajouter.mp3]	Commonly-Used
-appeler	to call, name, appeal	[sound:appeler.mp3]	Commonly-Used
-apporter	to bring, bear	[sound:apporter.mp3]	Commonly-Used
-décider	to decide	[sound:d%C3%A9cider.mp3]	Commonly-Used
-décrire	to describe	[sound:d%C3%A9crire.mp3]	Commonly-Used

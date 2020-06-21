@@ -6,21 +6,28 @@ import csv
 from collections import deque
 
 
-def import_list(file_in):
-    """use csv library to read in tsv file and return a deck of "mNotes", or Matt Notes"""
+class AnkiDictionary:
+    """ Dictionary of AnkiNotes
 
-    verbFields = ['fr', 'eng', 'aud', 'misc']
-    dNotes = deque()
+    """ 
 
-    # Label columns that are being read in
-    with open(file_in, newline='') as tsvfile:
-        reader = csv.DictReader(tsvfile, delimiter='\t', fieldnames=verbFields)
-        for row in reader:
-            # print(row)
-            thisNote = mNote(row['fr'],row['eng'],row['aud'],[])
-            dNotes.append(thisNote)
+    def import_list(self, file_in, lang):
+        """use csv library to read in tsv file and return a deck of "mNotes", or Matt Notes
+        
+        """
 
-    return dNotes
+        verbFields = ['fr', 'eng', 'aud', 'misc']
+        dNotes = deque()
+
+        # Label columns that are being read in
+        with open(file_in, newline='') as tsvfile:
+            reader = csv.DictReader(tsvfile, delimiter='\t', fieldnames=verbFields)
+            for row in reader:
+                print(row)
+                # thisNote = mNote(row['fr'],row['eng'],row['aud'],[])
+                # dNotes.append(thisNote)
+
+        return dNotes
 
 
 class mNote:

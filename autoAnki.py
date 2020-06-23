@@ -42,6 +42,14 @@ class AnkiDictionary:
         for note in self.note_deque:
             note.print_note()
 
+    def scrape_deck(self, fields):
+        """ Scrape media and translation for cards
+
+        """
+        for note in self.note_deque:
+            print('Scraping note: ' + Fore.CYAN + note.fr + Style.RESET_ALL)
+            note.scrape_wordref(fields)
+            print()
 
 class AnkiNote:
     """Store info (e.g. audio path, english translation) for constructing an Anki
@@ -59,8 +67,8 @@ class AnkiNote:
         self.fr = dict_entry.get('fr')
         self.en = dict_entry.get('en')
         self.freq = []
-        self.aud = []
-        self.img = []
+        self.aud = None
+        self.img = None
 
     def print_note(self):
         """ Print out available information about note
@@ -68,7 +76,11 @@ class AnkiNote:
         """
 
         print("\t" + Fore.CYAN + self.fr + Style.RESET_ALL)
-        print("\t\t en: \t" + self.en)
+
+        print("\t\t en: \t\t" + self.en)
+        print("\t\t img: \t" + str( self.img ))
+        print("\t\t aud: \t" + str( self.aud ))
+
         print()
 
     def scrape_wordref(self, fields):
@@ -99,8 +111,7 @@ class AnkiNote:
             soup.find()
 
             if not linkElems:
-                print('Could not find audio link.')
-                # TODO: Throw an error
+                logging.error('Could not find audio link: ' + self.fr)
                 return
 
             else:
@@ -108,7 +119,7 @@ class AnkiNote:
                 # print('Number of hits: ' + str(len(linkElems)))
 
                 if linkElems == []:
-                    print('Could not find audio link')
+                    print('Could not find audio link: ' + self.fr )
 
                 else:
                     audioUrl = 'http://www.wordreference.com' + linkElems[
@@ -119,15 +130,15 @@ class AnkiNote:
 
                     # Save the image to ./audio.
 
-                    # print(os.path.basename(audioUrl))
-                    audioPath = 'downloads/audio/' + self.fr + '.mp3'
+                    audioPath = 'audio/' + self.fr + '.mp3'
                     audioFile = open(os.path.join(audioPath), 'wb')
 
                     for chunk in res.iter_content(100000):
                         audioFile.write(chunk)
                     audioFile.close()
 
-                    print(audioPath)
+                    print('\t\tSaved audio to: ' + audioPath)
+                    self.aud = self.fr + '.mp3'
 
                     # TODO: Can I just return here?
 
@@ -137,17 +148,14 @@ class AnkiNote:
             <td class="ToWrd">car <em class="tooltip POS2">n<span><i>noun</i>: Refers to person, place, thing, quality, etc.</span></em></td>
             """
 
-            # print(thisString)
-            for i in range(5):
-                thisString = soup.find_all('td', {'class': 'ToWrd'})[i]
-                logging.debug(f"Working with: {thisString} ")
-                thatString = re.search('ToWrd\W*([a-zA-Z]*)\W',
+            thisString = soup.find_all('td', {'class': 'ToWrd'})[1]
+            logging.debug(f"Working with: {thisString} ")
+            thatString = re.search('ToWrd\W*([a-zA-Z]*)\W',
                                        str(thisString))
-                logging.debug(f"Result from regex: {thatString.group(1)} ")
+            logging.debug(f"Result from regex: {thatString.group(1)} ")
 
-                print(thatString)
+            print('\t\tTranslation: ' + thatString.group(1))
 
-            # print(re.search())
 
     def ripImage(self, thisword):
 

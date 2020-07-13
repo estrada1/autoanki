@@ -10,7 +10,7 @@ import unidecode
 import requests, sys, webbrowser, bs4, os
 import logging
 import re
-
+import platform
 
 class AnkiDictionary:
     """ Dictionary of AnkiNotes
@@ -20,7 +20,7 @@ class AnkiDictionary:
         """use csv library to read in tsv file and return a deck of AnkiNotes
         """
 
-        self.note_deque = deque()
+        self.note_deque = set()
 
         verbFields = ['freq', 'fr', 'en']
 
@@ -31,9 +31,11 @@ class AnkiDictionary:
                                     fieldnames=verbFields)
             for row in reader:
                 this_note = AnkiNote(row)
-                self.note_deque.append(this_note)
+                self.note_deque.add(this_note)
         print("Imported words: ")
         self.print_deck()
+
+        self.unfound = set({})
 
     def print_deck(self):
         """ Iteratively print all notes in the deck 
@@ -48,8 +50,33 @@ class AnkiDictionary:
         """
         for note in self.note_deque:
             print('Scraping note: ' + Fore.CYAN + note.fr + Style.RESET_ALL)
-            note.scrape_wordref(fields)
+            try:
+                note.scrape_wordref(fields)
+            except RuntimeError as e:
+                print(f'Logging error: {e}')
+                self.unfound.add(note)
             print()
+
+        self.note_deque = self.note_deque - self.unfound
+
+        self.print_unfound()
+
+    def print_unfound(self):
+        """Print all the missing translations unable to be found"""
+        print('Missing words:')
+        for note in self.unfound:
+            print(Fore.RED + f'\t{note.fr}' +Style.RESET_ALL)
+
+        # TODO write to unique filenames useing datetime
+        # TODO consider using json rather than .txt?
+
+        error_filename = 'log/missing_words.txt'
+        with open(error_filename, 'a') as f:
+            f.write('\n')
+            for note in self.unfound:
+                f.write(f'{note.fr}\n')
+
+        print(f'\nMissing words appended to file: {error_filename}')
 
 class AnkiNote:
     """Store info (e.g. audio path, english translation) for constructing an Anki
@@ -110,37 +137,28 @@ class AnkiNote:
             linkElems = soup.select(elementType)
             soup.find()
 
-            if not linkElems:
+            if not linkElems or linkElems == []:
                 logging.error('Could not find audio link: ' + self.fr)
-                return
+                raise RuntimeError(f'audio: {self.fr}')
 
             else:
-                # print('Searching,audiopath,imagepath for element type: ' + elementType )
-                # print('Number of hits: ' + str(len(linkElems)))
+                audioUrl = 'http://www.wordreference.com' + linkElems[0].get('src')
+                # print('Downloading audio %s...' % (audioUrl))
+                res = requests.get(audioUrl)
+                res.raise_for_status()
 
-                if linkElems == []:
-                    print('Could not find audio link: ' + self.fr )
+                # Save the image to ./audio.
+                audioPath = 'audio/' + self.fr + '.mp3'
+                audioFile = open(os.path.join(audioPath), 'wb')
 
-                else:
-                    audioUrl = 'http://www.wordreference.com' + linkElems[
-                        0].get('src')
-                    # print('Downloading audio %s...' % (audioUrl))
-                    res = requests.get(audioUrl)
-                    res.raise_for_status()
-
-                    # Save the image to ./audio.
-
-                    audioPath = 'audio/' + self.fr + '.mp3'
-                    audioFile = open(os.path.join(audioPath), 'wb')
-
-                    for chunk in res.iter_content(100000):
-                        audioFile.write(chunk)
+                for chunk in res.iter_content(100000):
+                    audioFile.write(chunk)
                     audioFile.close()
 
-                    print('\t\tSaved audio to: ' + audioPath)
-                    self.aud = self.fr + '.mp3'
+                print('\t\tSaved audio to: ' + audioPath)
+                self.aud = self.fr + '.mp3'
 
-                    # TODO: Can I just return here?
+                # TODO: Can I just return here?
 
         if 'translation' in fields:
             # grab translation
@@ -191,3 +209,24 @@ class AnkiNote:
             indList]  # Path stored as Tuple[Dictionary[List[String]]]
 
         return (absPath)
+
+
+class AnkiFiles:
+    """
+    Filesystem commands to place media and deck files into appropriate directories
+    """
+    def __init__(self):
+        self.platform = platform.system()
+        self.media_dir = ''
+
+        if self.platform is 'Linux':
+            self.media_dir = '/home/estrada/.local/share/Anki2/User 1/collection.media'
+        else:
+            raise RuntimeError('Unknown platform (I\'m only encoding for Linux at the moment)')
+
+    def import_media(self, deck):
+        """
+        Verify directory exists
+        Check for file redundancies
+        Copy files over
+        """

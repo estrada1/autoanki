@@ -5,4 +5,9 @@
 482	poser	lay
 483	contre	against
 484	modèle	pattern
+999	test	definition
+489	étonner	amaze
 486	centre	center
+100	étourdir	stun
+100	étreindre	embrace
+100	évaluer	evaluate

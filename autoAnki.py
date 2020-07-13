@@ -75,9 +75,9 @@ class AnkiNote:
 
         """
 
-        print("\t" + Fore.CYAN + self.fr + Style.RESET_ALL)
+        print("\t" + Fore.CYAN + str( self.fr ) + Style.RESET_ALL)
 
-        print("\t\t en: \t\t" + self.en)
+        print("\t\t en: \t\t" +str( self.en )) 
         print("\t\t img: \t" + str( self.img ))
         print("\t\t aud: \t" + str( self.aud ))
 

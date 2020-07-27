@@ -11,7 +11,7 @@ pip3 install -r requirements.txt
 - [beautifulsoup4](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 - [google-images-download](https://google-images-download.readthedocs.io/en/latest/index.html)
 - [requests](https://requests.readthedocs.io/en/master/)
-- + others as I tinker
+- others as I tinker
 
 ### Getting Started
 
